@@ -18,6 +18,8 @@ from dateutil.parser import DEFAULTPARSER
 
 from pyston.utils import LOOKUP_SEP
 
+from is_core.forms.widgets import AbstractDateRangeWidget, DateRangeWidget, DateTimeRangeWidget
+
 from .exceptions import FilterError, FilterValueError, OperatorFilterError
 
 
@@ -658,6 +660,28 @@ class SimpleFilterMixin(object):
         :return: returns Q object or dictionary that will be used for filtering resource response.
         """
         raise NotImplementedError
+
+
+class DateRangeFilterMixin(object):
+
+    def __init__(self, *args, **kwargs):
+        super(DateRangeFilterMixin, self).__init__(*args, **kwargs)
+        self.widget = self.get_widget_class()(self.get_full_filter_key())
+
+    def get_widget_class(self):
+        raise NotImplemented
+
+
+class DateRangeFilter(DateRangeFilterMixin, DateFilter):
+
+    def get_widget_class(self):
+        return DateRangeWidget
+
+
+class DateTimeRangeFilter(DateRangeFilterMixin, DateFilter):
+
+    def get_widget_class(self):
+        return DateTimeRangeWidget
 
 
 class SimpleEqualFilterMixin(SimpleFilterMixin):

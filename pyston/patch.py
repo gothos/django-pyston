@@ -16,7 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from pyston.utils.compatibility import get_last_parent_pk_field_name
 from pyston.filters.default_filters import (
     BooleanFieldFilter, NullBooleanFieldFilter, StringFieldFilter, IntegerFieldFilter, FloatFieldFilter,
-    DecimalFieldFilter, DateFilter, DateTimeFilter, GenericIPAddressFieldFilter, IPAddressFilterFilter,
+    DecimalFieldFilter, DateRangeFilter, DateTimeRangeFilter, GenericIPAddressFieldFilter, IPAddressFilterFilter,
     ManyToManyFieldFilter, ForeignKeyFilter, ForeignObjectRelFilter, CaseSensitiveStringFieldFilter
 )
 
@@ -105,8 +105,8 @@ IntegerField.default_filter = IntegerFieldFilter
 FloatField.default_filter = FloatFieldFilter
 DecimalField.default_filter = DecimalFieldFilter
 AutoField.default_filter = IntegerFieldFilter
-DateField.default_filter = DateFilter
-DateTimeField.default_filter = DateTimeFilter
+DateField.default_filter = DateRangeFilter
+DateTimeField.default_filter = DateTimeRangeFilter
 GenericIPAddressField.default_filter = GenericIPAddressFieldFilter
 IPAddressField.default_filter = IPAddressFilterFilter
 ManyToManyField.default_filter = ManyToManyFieldFilter
